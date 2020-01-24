@@ -65,6 +65,12 @@ namespace Z.Test.EntityFramework.Plus
                     property.SetValue(item, i);
                 }
 
+                property = item.GetType().GetProperty("Column4", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (property != null)
+                {
+                    property.SetValue(item, new DateTime(2020, 01, 24));
+                }
+
                 property = item.GetType().GetProperty("ColumnCat");
                 if (property != null)
                 {

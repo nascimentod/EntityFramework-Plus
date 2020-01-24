@@ -5,6 +5,8 @@
 // More projects: http://www.zzzprojects.com/
 // Copyright © ZZZ Projects Inc. 2014 - 2016. All rights reserved.
 
+using System;
+
 namespace Z.Test.EntityFramework.Plus
 {
     public class Entity_Basic_Many
@@ -16,5 +18,7 @@ namespace Z.Test.EntityFramework.Plus
         public int Column2 { get; set; }
 
         public int Column3 { get; set; }
+
+        public DateTime Column4 { get; set; }
     }
 }

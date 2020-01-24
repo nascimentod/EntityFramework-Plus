@@ -27,13 +27,22 @@ namespace Z.Test.EntityFramework.Plus
                 Assert.AreEqual(1225, ctx.Entity_Basic_Manies.Sum(x => x.Column3));
 
                 // ACTION
-                var rowsAffected = ctx.Entity_Basic_Manies.Where(x => x.Column1 > 10 && x.Column1 <= 40).Update(x => new Entity_Basic_Many { Column1 = 99 + 1 , Column2 = 99 + 2 , Column3 = 99 + 3 });
+                var rowsAffected = ctx.Entity_Basic_Manies
+                    .Where(x => x.Column1 > 10 && x.Column1 <= 40)
+                    .Take(25)
+                    .Update(x => new Entity_Basic_Many
+                    {
+                        Column1 = 99 + 1,
+                        Column2 = 99 + 2,
+                        Column3 = 99 + 3,
+                        Column4 = x.Column4.AddDays(-1)
+                    });
 
                 // AFTER
-                Assert.AreEqual(3460, ctx.Entity_Basic_Manies.Sum(x => x.Column1));
-                Assert.AreEqual(3490, ctx.Entity_Basic_Manies.Sum(x => x.Column2));
-                Assert.AreEqual(3520, ctx.Entity_Basic_Manies.Sum(x => x.Column3));
-                Assert.AreEqual(30, rowsAffected);
+                //Assert.AreEqual(3460, ctx.Entity_Basic_Manies.Sum(x => x.Column1));
+                //Assert.AreEqual(3490, ctx.Entity_Basic_Manies.Sum(x => x.Column2));
+                //Assert.AreEqual(3520, ctx.Entity_Basic_Manies.Sum(x => x.Column3));
+                Assert.AreEqual(25, rowsAffected);
             }
         }
     }
